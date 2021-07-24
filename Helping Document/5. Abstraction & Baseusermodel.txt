@@ -1,0 +1,2 @@
+https://docs.djangoproject.com/en/3.2/topics/auth/customizing/
+https://docs.djangoproject.com/en/1.8/_modules/django/contrib/auth/models/

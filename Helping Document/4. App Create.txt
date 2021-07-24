@@ -1,0 +1,4 @@
+App Create Command
+==============
+python manage.py startapp category
+

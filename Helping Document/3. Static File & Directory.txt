@@ -1,0 +1,8 @@
+https://bohubrihi.com/course/django-backend-web-development/lesson/views-urls-templates/topic/templates/
+
+https://bohubrihi.com/course/django-backend-web-development/lesson/views-urls-templates/topic/static-files/
+
+To copy the static file
+==============
+python manage.py collectstatic
+[ https://stackoverflow.com/questions/34586114/whats-the-point-of-djangos-collectstatic ]

@@ -1,0 +1,4 @@
+django-admin startproject greatkart .
+
+Note: If do not use .(dot) after project name, then it will create a folder as project name the create project. So use .(dot) is the 
+best practice.

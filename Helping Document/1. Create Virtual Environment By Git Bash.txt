@@ -1,0 +1,13 @@
+To create & active
+=============
+python -m venv env
+source env/scripts/activate
+
+Deactive
+=======
+deactive
+
+Check The Installed Package
+==================
+pip list
+pip freeze
