@@ -3,7 +3,9 @@ from .models import Category
 
 # Register your models here.
 class CategoryAdmin(admin.ModelAdmin):
-    list_display=['id', 'name']
+    prepopulated_fields={'slug': ('name',)}
+
+    list_display=['id', 'name', 'slug']
     list_filter=['id', 'name']
     search_fields = ['name']
     ordering = ['id'] 
