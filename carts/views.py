@@ -15,6 +15,7 @@ def _cart_id(request):
 
 def add_cart(request, product_id):
     product = Product.objects.get(id=product_id)
+    
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
@@ -27,16 +28,18 @@ def add_cart(request, product_id):
         cart_item = CartItem.objects.get(product=product, cart=cart)
         cart_item.quantity += 1
         cart_item.save()
+
     except CartItem.DoesNotExist:
         cart_item = CartItem.objects.create(
-            product=product, 
-            cart=cart,
+            product = product, 
+            cart = cart,
             quantity = 1,
         )
         cart_item.save()
-        return HttpResponse(cart_item.product)
-        exit()
+    #print(type(cart_item))
+    return HttpResponse(cart_item.product)
+    exit()
 
-        return redirect('cart')
+    return redirect('cart')
 
 
