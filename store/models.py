@@ -1,3 +1,4 @@
+from _typeshed import Self
 from django.db import models
 from django.db.models.deletion import CASCADE
 from category.models import Category
@@ -22,6 +23,15 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
+class VariationManager(models.Manager):
+    def color(self):
+        return super(VariationManager, self).filter(variation_category='color', is_active=True)
+
+    def size(self):
+        return super(VariationManager, self).filter(variation_category='size', is_active=True)
+    
+
 variation_category_choice=(
     ('color', 'color'),
     ('size', 'size'),
@@ -34,7 +44,9 @@ class Variation(models.Model):
     is_active   = models.BooleanField(default=True)
     create_date = models.DateTimeField(auto_now_add=True)
 
-    def __str__(self):
+    object = VariationManager()
+
+    def __unicode__(self):
         return self.product
 
     

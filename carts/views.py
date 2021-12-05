@@ -13,6 +13,7 @@ def _cart_id(request):
     return cart
 
 def add_cart(request, product_id):
+    return HttpResponse(request.GET['color'])
     product = Product.objects.get(id=product_id)
     
     try:
