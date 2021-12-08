@@ -1,9 +1,7 @@
-from _typeshed import Self
 from django.db import models
 from django.db.models.deletion import CASCADE
 from category.models import Category
 from django.urls import reverse
-
 
 class Product(models.Model):
     name        = models.CharField(max_length=200, unique=True)
@@ -23,12 +21,11 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
 class VariationManager(models.Manager):
-    def color(self):
+    def colors(self):
         return super(VariationManager, self).filter(variation_category='color', is_active=True)
 
-    def size(self):
+    def sizes(self):
         return super(VariationManager, self).filter(variation_category='size', is_active=True)
     
 
