@@ -1,0 +1,52 @@
+===> get() return the model def __str__ function <===
+product = Product.objects.get(id=product_id)
+print(product)
+++++++
+ATX Jeans
+
+product = Product.objects.get(id=product_id)
+print(str(product.id) +' '+product.name)
+++++++
+1 ATX Jeans
+
+
+===> all() return a Queryset <===
+products = Product.objects.all()
+print(products)
+++++++
+<QuerySet [<Product: ATX Jeans>, <Product: Mavi Jeans>, <Product: Blue Shirt>, <Product: Wrangler Shirt>, <Product: Puma Ferrari Shoes>, <Product: Jordan True Flight Basketball Shoes>]>
+
+
+
+    products = Product.objects.all()
+    print(products)
+    for p in products:
+        print(p.name +' '+ str(p.id))
++++++++
+<QuerySet [<Product: ATX Jeans>, <Product: Mavi Jeans>, <Product: Blue Shirt>, <Product: Wrangler Shirt>, <Product: Puma Ferrari Shoes>, <Product: Jordan True Flight Basketball Shoes>]>
+ATX Jeans 1
+Mavi Jeans 2
+Blue Shirt 3
+Wrangler Shirt 4
+Puma Ferrari Shoes 5
+
+
+===> request.method='POST' also populate the Querydict that means dictionary type data <===
+if request.method == 'POST':
+        print(request.POST)
+        for item in request.POST:
+            key = item
+            value = request.POST[key]
+++++++++
+<QueryDict: {'csrfmiddlewaretoken': ['RkzzjMQ1T9v0mDPSEiYqPrdH07AH4Xg76XDertlapEEFOMBJrdlYjBWC9Xm9SDVo'], 'color': ['Red'], 'size': ['Medium']}>
+
+
+===> Filter also generate QuerySet Which Contain Object <===
+cart_item = CartItem.objects.filter(product=product, cart=cart)
+        print(cart_item)
+        for item in cart_item:
+            print(item)
+++++++++
+<QuerySet [<CartItem: CartItem object (99)>, <CartItem: CartItem object (100)>]>
+CartItem object (99)
+CartItem object (100)
