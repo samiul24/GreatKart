@@ -24,13 +24,11 @@ def add_cart(request, product_id):
             try:
                 #print(key +': '+ value)
                 variation = Variation.objects.get(product=product, variation_category__iexact=key, variation_value__iexact=value)
-                #print('Code Test')
-                #print(variation)
                 product_variation.append(variation)
+                #print(product_variation)
                        
             except:
                 pass
-        
     try:
         cart = Cart.objects.get(cart_id=_cart_id(request))
     except Cart.DoesNotExist:
@@ -47,7 +45,6 @@ def add_cart(request, product_id):
         """print(cart_item)
         for item in cart_item:
             print(item)"""
-
 
         ex_var_list = []
         id = []
@@ -89,18 +86,21 @@ def remove_cart(request, product_id):
     #product = get_object_or_404(Product, id=product_id)
     #cart_item = CartItem.objects.get(cart=cart, product=product)
     cart_item = CartItem.objects.get(cart=cart, product=product_id)
-    if cart_item.quantity > 1:
-        cart_item.quantity -= 1
-        cart_item.save()
-    else:
-        cart_item.delete()
+    try:
+        if cart_item.quantity > 1:
+            cart_item.quantity -= 1
+            cart_item.save()
+        else:
+            cart_item.delete()
+    except:
+        pass
     return redirect('cart')
 
-def remove_cart_item(request, product_id):
+def remove_cart_item(request, product_id, cart_item_id):
     cart = Cart.objects.get(cart_id=_cart_id(request))
     #product = get_object_or_404(Product, id=product_id)
     #cart_item = CartItem.objects.get(cart=cart, product=product)
-    cart_item = CartItem.objects.get(cart=cart, product=product_id)
+    cart_item = CartItem.objects.get(cart=cart, product=product_id, id=cart_item_id)
     cart_item.delete()
     return redirect('cart')
 
